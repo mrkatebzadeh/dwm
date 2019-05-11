@@ -92,7 +92,8 @@ static const char *sbrowser[]  = { "tabbed", "-c", "surf", "-e", NULL };
 static const char *browser[]  = { "firefox", NULL };
 static const char *emacs[]  = { "emacs", NULL };
 static const char *display[]  = { "displayselect", NULL };
-static const char *player[]  = { "ncmpcpp", NULL };
+static const char *player[]  = { "st", "ncmpcpp", NULL };
+static const char *monitor[]  = { "st", "htop", NULL };
 
 static Key keys[] = {
 	/* modifier               key              function        argument */
@@ -107,7 +108,8 @@ static Key keys[] = {
 	{ MODKEY,                 XK_w,            spawn,          {.v = browser } },
 	{ MODKEY,                 XK_e,            spawn,          {.v = emacs } },
 	{ MODKEY,                 XK_F3,           spawn,          {.v = display } },
-	{ MODKEY,                 XK_m,            setlayout,      {.v = player } },
+	{ MODKEY,                 XK_m,            spawn,          {.v = player } },
+	{ MODKEY,                 XK_y,            spawn,          {.v = monitor } },
 	{ MODKEY,                 XK_b,            togglebar,      {0} },
 	{ MODKEY|ShiftMask,       XK_j,            rotatestack,    {.i = +1 } },
 	{ MODKEY|ShiftMask,       XK_k,            rotatestack,    {.i = -1 } },
