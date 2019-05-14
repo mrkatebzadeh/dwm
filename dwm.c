@@ -1132,14 +1132,14 @@ void manage(Window w, XWindowAttributes *wa) {
   if (c->isfloating)
     XRaiseWindow(dpy, c->win);
   if (c->isfloating && c->y == (c->mon->showbar ? bh : 0)) {
-		if (t) {
-			c->x = t->x + WIDTH(t) / 2 - WIDTH(c) / 2;
-			c->y = t->y + HEIGHT(t) / 2 - HEIGHT(c) / 2;
-		} else {
-			c->x = c->mon->mx + (c->mon->mw / 2 - WIDTH(c) / 2);
-			c->y = c->mon->my + (c->mon->mh / 2 - HEIGHT(c) / 2);
-		}
-	}
+ 	if (t) {
+ 		c->x = t->x + WIDTH(t) / 2 - WIDTH(c) / 2;
+ 		c->y = t->y + HEIGHT(t) / 2 - HEIGHT(c) / 2;
+ 	} else {
+ 		c->x = c->mon->mx + (c->mon->mw / 2 - WIDTH(c) / 2);
+ 		c->y = c->mon->my + (c->mon->mh / 2 - HEIGHT(c) / 2);
+    }
+  }
   attachaside(c);
   attachstack(c);
   XChangeProperty(dpy, root, netatom[NetClientList], XA_WINDOW, 32,
