@@ -43,6 +43,7 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
 	{ "Firefox",  NULL,       NULL,       1 << 0,       0,           -1 },
+	{ "St",       NULL,       "scratchpad",       0,    1,           -1 },
 };
 
 /* layout(s) */
@@ -87,6 +88,7 @@ static const char *emacs[]  = { "emacs", NULL };
 static const char *display[]  = { "displayselect", NULL };
 static const char *player[]  = { "st", "ncmpcpp", NULL };
 static const char *monitor[]  = { "st", "htop", NULL };
+static const char *stdrop[]  = { "stdrop", NULL };
 
 static Key keys[] = {
 	/* modifier               key              function        argument */
@@ -102,6 +104,7 @@ static Key keys[] = {
 	{ MODKEY,                 XK_F3,           spawn,          {.v = display } },
 	{ MODKEY,                 XK_m,            spawn,          {.v = player } },
 	{ MODKEY,                 XK_y,            spawn,          {.v = monitor } },
+	{ MODKEY,                 XK_u,            spawn,          {.v = stdrop } },
 	{ MODKEY,                 XK_b,            togglebar,      {0} },
 	{ MODKEY|ShiftMask,       XK_j,            rotatestack,    {.i = +1 } },
 	{ MODKEY|ShiftMask,       XK_k,            rotatestack,    {.i = -1 } },
