@@ -43,6 +43,7 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
 	{ "Firefox",  NULL,       NULL,       1 << 0,       0,           -1 },
+	{ "St",       "scratchpad",    NULL,       0,    1,           -1 },
 	{ NULL,       "dropdown",      NULL,       0,    1,           -1 },
 };
 
@@ -87,8 +88,8 @@ static const char *browser[]  = { "firefox", NULL };
 static const char *emacs[]  = { "emacs", NULL };
 static const char *display[]  = { "displayselect", NULL };
 static const char *player[]  = { "st", "ncmpcpp", NULL };
-static const char *monitor[]  = { "st", "htop", NULL };
-static const char *stdrop[]  = { "stdrop", NULL };
+static const char *monitor[]  = { "dropdown", "htop", NULL };
+static const char *stdrop[]  = { "dropdown", NULL };
 
 static Key keys[] = {
 	/* modifier               key              function        argument */
