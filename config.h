@@ -17,12 +17,19 @@ static const char col_gray2[]       = "#282a36"; /* border color unfocused windo
 static const char col_gray3[]       = "#96b5b4";
 static const char col_gray4[]       = "#c0c5ce";
 static const char col_cyan[]        = "#6272a4"; /* border color focused windows and tags */
+static const char col_black[]       = "#000000";
+static const char col_red[]         = "#ff79c6";
+static const char col_yellow[]      = "#ffb86c";
+static const char col_white[]       = "#ffffff";
+
 static const unsigned int baralpha = 0xdd;
 static const unsigned int borderalpha = OPAQUE;
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray4, col_gray1, col_gray2 },
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan },
+	[SchemeWarn] =	 { col_black, col_yellow, col_red },
+	[SchemeUrgent]=	 { col_white, col_red,    col_red },
 };
 static const unsigned int alphas[][3]      = {
 	/*               fg      bg        border     */
