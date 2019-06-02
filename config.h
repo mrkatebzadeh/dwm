@@ -3,26 +3,26 @@
 
 /* See LICENSE file for copyright and license details. */
 /* appearance */
-static const unsigned int borderpx  = 2;        /* border pixel of windows */
+static const unsigned int borderpx  = 4;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int gappx     = 5;        /* pixel gap between clients */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int horizpadbar        = 6;        /* horizontal padding for statusbar */
 static const int vertpadbar         = 7;        /* vertical padding for statusbar */
-static const char *fonts[]          = { "UbuntuMono Nerd Font:size=10" };
-static const char dmenufont[]       = "UbuntuMono Nerd Font:size=10";
+static const char *fonts[]          = { "monospace:size=10" };
+static const char dmenufont[]       = "monospace:size=10";
 static const char col_gray1[]       = "#292d3e";
-static const char col_gray2[]       = "#000000"; /* border color unfocused windows */
+static const char col_gray2[]       = "#282a36"; /* border color unfocused windows */
 static const char col_gray3[]       = "#96b5b4";
 static const char col_gray4[]       = "#c0c5ce";
-static const char col_cyan[]        = "#924441"; /* border color focused windows and tags */
-static const unsigned int baralpha = 0xee;
+static const char col_cyan[]        = "#6272a4"; /* border color focused windows and tags */
+static const unsigned int baralpha = 0xdd;
 static const unsigned int borderalpha = OPAQUE;
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray4, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan },
 };
 static const unsigned int alphas[][3]      = {
 	/*               fg      bg        border     */
@@ -32,7 +32,7 @@ static const unsigned int alphas[][3]      = {
 
 /* tagging */
 /* static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" }; */
-static const char *tags[] = { "1 ", "2 ", "3 ", "4 ", "5 ", "6 ", "7 ", "8 ", "9 " };
+static const char *tags[] = { "1 ", "2 ", "3 ", "4 ", "5 ", "6 ", "7 ", "8 ", "9 " };
 
 
 static const Rule rules[] = {
@@ -96,15 +96,7 @@ static Key keys[] = {
 	{ MODKEY,                 XK_d,            spawn,          {.v = dmenucmd } },
 	{ MODKEY,                 XK_Return,       spawn,          {.v = sterm } },
 	{ MODKEY|ShiftMask,       XK_Return,       spawn,          {.v = samedir } },
-	{ MODKEY|ShiftMask,       XK_z,            spawn,          {.v = shutdown } },
 	{ MODKEY,                 XK_x,            spawn,          {.v = lockscreen } },
-	{ MODKEY,                 XK_r,            spawn,          {.v = sfilemanager } },
-	{ MODKEY,                 XK_s,            spawn,          {.v = sbrowser } },
-	{ MODKEY,                 XK_w,            spawn,          {.v = browser } },
-	{ MODKEY,                 XK_e,            spawn,          {.v = emacs } },
-	{ MODKEY,                 XK_F3,           spawn,          {.v = display } },
-	{ MODKEY,                 XK_m,            spawn,          {.v = player } },
-	{ MODKEY,                 XK_y,            spawn,          {.v = monitor } },
 	{ MODKEY,                 XK_u,            spawn,          {.v = stdrop } },
 	{ MODKEY,                 XK_b,            togglebar,      {0} },
 	{ MODKEY|ShiftMask,       XK_j,            rotatestack,    {.i = +1 } },

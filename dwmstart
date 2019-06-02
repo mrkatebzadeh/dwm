@@ -1,12 +1,9 @@
 #!/bin/sh
 
-feh --bg-scale ~/.config/wall.png
 
 while true
 do
-    pkill dunst; dunst &
-    pkill compton; compton -b
-    pkill slstatus; slstatus &
+    killall dwmbar; dwmbar &
     setxkbmap -model pc104 -layout gb,ir -variant ,, -option grp:alt_shift_toggle
     dwm
 done
