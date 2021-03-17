@@ -5,7 +5,7 @@
 #define TERMCLASS "St"
 
 /* appearance */
-static unsigned int borderpx  = 0;        /* border pixel of windows */
+static unsigned int borderpx  = 3;        /* border pixel of windows */
 static unsigned int snap      = 32;       /* snap pixel */
 static unsigned int gappih    = 20;       /* horiz inner gap between windows */
 static unsigned int gappiv    = 10;       /* vert inner gap between windows */
@@ -17,10 +17,10 @@ static int showbar            = 1;        /* 0 means no bar */
 static int topbar             = 1;        /* 0 means bottom bar */
 static char *fonts[]          = { "monospace:size=10", "JoyPixels:pixelsize=10:antialias=true:autohint=true" "FontAwesome:style=Regular"  };
 static char normbgcolor[]           = "#222222";
-static char normbordercolor[]       = "#444444";
+static char normbordercolor[]       = "#000000";
 static char normfgcolor[]           = "#bbbbbb";
 static char selfgcolor[]            = "#eeeeee";
-static char selbordercolor[]        = "#770000";
+static char selbordercolor[]        = "#004466";
 static char selbgcolor[]            = "#456980";
 static char *colors[][3] = {
        /*               fg           bg           border   */
@@ -54,6 +54,7 @@ static const Rule rules[] = {
 	{ "Gimp",     NULL,       NULL,       	    1 << 2,       0,           0,         0,        -1 },
 	{ "Brave-browser",     NULL,       NULL,    1 << 6,       0,           0,         0,        -1 },
 	{ "Microsoft Teams - Preview",     NULL,       NULL,    1 << 7,       0,           0,         0,        -1 },
+	{ NULL,   NULL,       "newsboat",       	1 << 5,       0,           0,         0,        -1 },
 	{ TERMCLASS,   NULL,       NULL,       	    0,            0,           1,         0,        -1 },
 	{ NULL,       NULL,       "Event Tester",   0,            0,           0,         1,        -1 },
 	{ NULL,      "spterm",    NULL,       	    SPTAG(0),     1,           1,         0,        -1 },
