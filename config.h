@@ -53,6 +53,9 @@ static const Rule rules[] = {
 	/* class    instance      title       	 tags mask    isfloating   isterminal  noswallow  monitor */
 	{ "Gimp",     NULL,       NULL,       	    1 << 2,       0,           0,         0,        -1 },
 	{ "Brave-browser",     NULL,       NULL,    1 << 6,       0,           0,         0,        -1 },
+	{ "Caprine",     NULL,       NULL,    1 << 8,       0,           0,         0,        -1 },
+	{ "Slack",     NULL,       NULL,    1 << 8,       0,           0,         0,        -1 },
+	{ NULL,     NULL,       "neomutt",    1 << 7,       0,           0,         0,        -1 },
 	{ "Microsoft Teams - Preview",     NULL,       NULL,    1 << 7,       0,           0,         0,        -1 },
 	{ NULL,   NULL,       "newsboat",       	1 << 5,       0,           0,         0,        -1 },
 	{ TERMCLASS,   NULL,       NULL,       	    0,            0,           1,         0,        -1 },
