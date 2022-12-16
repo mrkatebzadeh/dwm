@@ -34,12 +34,14 @@ typedef struct {
 } Sp;
 const char *spcmd1[] = {TERMINAL, "-n", "spterm", "-g", "120x34", NULL };
 const char *spcmd2[] = {TERMINAL, "-n", "spcalc", "-f", "monospace:size=16", "-g", "50x20", "-e", "bc", "-lq", NULL };
-const char *spcmd3[] = {TERMINAL, "-n", "fzfnova", "-g", "120x25", "-e", "fzf-nova", NULL };
+const char *spcmd3[] = {TERMINAL, "-n", "launcher", "-e", "dwm_launcher", NULL };
+const char *spcmd4[] = {TERMINAL, "-n", "dashboard", "-g", "120x25", "-e", "dwm_dash", NULL };
 static Sp scratchpads[] = {
 	/* name          cmd  */
 	{"spterm",      spcmd1},
 	{"spcalc",      spcmd2},
-	{"fzfnova",      spcmd3},
+	{"launcher",      spcmd3},
+	{"dashboard",      spcmd4}
 };
 
 /* tagging */
@@ -64,7 +66,8 @@ static const Rule rules[] = {
 	{ NULL,       NULL,       "Event Tester",   0,            0,           0,         1,        -1 },
 	{ NULL,      "spterm",    NULL,       	    SPTAG(0),     1,           1,         0,        -1 },
 	{ NULL,      "spcalc",    NULL,       	    SPTAG(1),     1,           1,         0,        -1 },
-	{ NULL,      "fzfnova",    NULL,       	    SPTAG(2),     1,           1,         0,        -1 },
+	//{ NULL,      "launcher",    NULL,       	    SPTAG(2),     1,           1,         0,        -1 },
+	{ NULL,      "dashboard",    NULL,       	    SPTAG(3),     1,           1,         0,        -1 },
 };
 
 /* layout(s) */
@@ -200,7 +203,7 @@ static Key keys[] = {
 	{ MODKEY,			XK_s,		togglesticky,	{0} },
 	/* { MODKEY|ShiftMask,		XK_s,		spawn,		SHCMD("") }, */
 	//{ MODKEY,			XK_d,		spawn,          SHCMD("dmenu_run") },
-	{ MODKEY,		        XK_d,		togglescratch,	{.ui = 2} },
+	{ MODKEY,		        XK_d,		togglescratch,	{.ui = 3} },
 	//{ MODKEY|ShiftMask,		XK_d,		spawn,		SHCMD("passmenu") },
 	{ MODKEY,			XK_f,		togglefullscr,	{0} },
 	{ MODKEY|ShiftMask,		XK_f,		setlayout,	{.v = &layouts[8]} },
@@ -257,7 +260,7 @@ static Key keys[] = {
 	//{ MODKEY,			XK_F10,		spawn,		SHCMD("dmenuumount") },
 	//{ MODKEY,			XK_F11,		spawn,		SHCMD("mpv --no-cache --no-osc --no-input-default-bindings --profile=low-latency --input-conf=/dev/null --title=webcam $(ls /dev/video[0,2,4,6,8] | tail -n 1)") },
 	//{ MODKEY,			XK_F12,		spawn,		SHCMD("remaps & notify-send \\\"⌨️ Keyboard remapping...\\\" \\\"Re-running keyboard defaults for any newly plugged-in keyboards.\\\"") },
-	{ MODKEY,			XK_space, togglescratch,	{.ui = 2} }, 
+	{ MODKEY,			XK_space, spawn, {.v = (const char*[]){ "dmenu_run", NULL } }  }, 
 	{ MODKEY|ShiftMask,		XK_space,	togglefloating,	{0} },
 
 	//{ 0,				XK_Print,	spawn,		SHCMD("maim pic-full-$(date '+%y%m%d-%H%M-%S').png") },
