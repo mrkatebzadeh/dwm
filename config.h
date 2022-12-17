@@ -15,7 +15,7 @@ static int swallowfloating    = 0;        /* 1 means swallow floating windows by
 static int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static int showbar            = 1;        /* 0 means no bar */
 static int topbar             = 1;        /* 0 means bottom bar */
-static char *fonts[]          = { "monospace:size=13", "FontAwesome5Free:style=Solid:pixelsize=15", "FontAwesome5Brands:style=Solid:pixelsize=15" };
+static char *fonts[]          = { "JetBrainsMono Nerd Font:style=Bold:size=15", "monospace:size=13", "FontAwesome5Free:style=Solid:pixelsize=15", "FontAwesome5Brands:style=Solid:pixelsize=15" };
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#000000";
 static char normfgcolor[]           = "#bbbbbb";
@@ -45,7 +45,7 @@ static Sp scratchpads[] = {
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "", "", "", "", "", "" };
+static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 static const Rule rules[] = {
 	/* xprop(1):
