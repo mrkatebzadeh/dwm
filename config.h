@@ -15,7 +15,7 @@ static int swallowfloating    = 0;        /* 1 means swallow floating windows by
 static int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static int showbar            = 1;        /* 0 means no bar */
 static int topbar             = 1;        /* 0 means bottom bar */
-static char *fonts[]          = { "JetBrainsMono Nerd Font:style=Bold:size=15", "monospace:size=13", "FontAwesome5Free:style=Solid:pixelsize=15", "FontAwesome5Brands:style=Solid:pixelsize=15" };
+static char *fonts[]          = { "monospace:size=15" };
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#000000";
 static char normfgcolor[]           = "#bbbbbb";
