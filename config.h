@@ -45,7 +45,7 @@ static Sp scratchpads[] = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { " 1  ", " 2  ", " 3  ", " 4  ", " 5  ", " 6  ", " 7  ", " 8  ", " 9  " };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -53,15 +53,15 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	*/
 	/* class    instance      title       	 tags mask    isfloating   isterminal  noswallow  monitor */
-	{ "Gimp",     NULL,       NULL,       	    1 << 2,       0,           0,         0,        -1 },
+	{ "Mendeley Desktop",     NULL,       NULL,       	    1 << 3,       0,           0,         0,        -1 },
+	{ NULL,   NULL,       "newsboat",       	1 << 5,       0,           0,         0,        -1 },
 	{ "Brave-browser",     NULL,       NULL,    1 << 6,       0,           0,         0,        -1 },
-	{ "Caprine",     NULL,       NULL,    1 << 8,       0,           0,         0,        -1 },
-	{ "TelegramDesktop",     NULL,       NULL,    1 << 8,       0,           0,         0,        -1 },
-	{ "Slack",     NULL,       NULL,    1 << 8,       0,           0,         0,        -1 },
 	{ NULL,     NULL,       "neomutt",    1 << 7,       0,           0,         0,        -1 },
 	{ "tabbed",     "neomutt",       NULL,    1 << 7,       0,           0,         0,        -1 },
 	{ "Microsoft Teams - Preview",     NULL,       NULL,    1 << 7,       0,           0,         0,        -1 },
-	{ NULL,   NULL,       "newsboat",       	1 << 5,       0,           0,         0,        -1 },
+	{ "Caprine",     NULL,       NULL,    1 << 8,       0,           0,         0,        -1 },
+	{ "TelegramDesktop",     NULL,       NULL,    1 << 8,       0,           0,         0,        -1 },
+	{ "Slack",     NULL,       NULL,    1 << 8,       0,           0,         0,        -1 },
 	{ TERMCLASS,   NULL,       NULL,       	    0,            0,           1,         0,        -1 },
 	{ NULL,       NULL,       "Event Tester",   0,            0,           0,         1,        -1 },
 	{ NULL,      "spterm",    NULL,       	    SPTAG(0),     1,           1,         0,        -1 },
