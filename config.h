@@ -1,8 +1,8 @@
 /* See LICENSE file for copyright and license details. */
 
 /* Constants */
-#define TERMINAL "st"
-#define TERMCLASS "St"
+#define TERMINAL "alacritty"
+#define TERMCLASS "Alacritty"
 
 /* appearance */
 static unsigned int borderpx  = 3;        /* border pixel of windows */
@@ -32,10 +32,10 @@ typedef struct {
 	const char *name;
 	const void *cmd;
 } Sp;
-const char *spcmd1[] = {TERMINAL, "-n", "spterm", "-g", "120x34", NULL };
-const char *spcmd2[] = {TERMINAL, "-n", "spcalc", "-f", "monospace:size=16", "-g", "50x20", "-e", "bc", "-lq", NULL };
-const char *spcmd3[] = {TERMINAL, "-n", "launcher", "-e", "dwm_launcher", NULL };
-const char *spcmd4[] = {TERMINAL, "-n", "dashboard", "-g", "120x25", "-e", "dwm_dash", NULL };
+const char *spcmd1[] = {TERMINAL, "-o", "window.class.general: spterm", "-o", "window.class.instance: spterm", NULL };
+const char *spcmd2[] = {TERMINAL, "-o", "window.class.general: spcalc", "-o", "window.class.instance: spcalc", "-e", "bc", "-lq", NULL };
+const char *spcmd3[] = {TERMINAL, "-o", "window.class.general: launcher", "-o", "window.class.instance: launcher", "-e", "dwm_launcher", NULL };
+const char *spcmd4[] = {TERMINAL, "-o", "window.class.general: dashboard", "-o", "window.class.instance: dashboard", "-e", "dwm_dash", NULL };
 static Sp scratchpads[] = {
 	/* name          cmd  */
 	{"spterm",      spcmd1},
