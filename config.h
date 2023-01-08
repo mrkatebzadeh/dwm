@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* Constants */
-#define TERMINAL "alacritty"
+#define TERMINAL "terminal"
 #define TERMCLASS "Alacritty"
 
 /* appearance */
@@ -35,10 +35,10 @@ typedef struct {
 	const char *name;
 	const void *cmd;
 } Sp;
-const char *spcmd1[] = {TERMINAL, "-o", "window.class.general: spterm", "-o", "window.class.instance: spterm", NULL };
-const char *spcmd2[] = {TERMINAL, "-o", "window.class.general: spcalc", "-o", "window.class.instance: spcalc", "-e", "bc", "-lq", NULL };
-const char *spcmd3[] = {TERMINAL, "-o", "window.class.general: launcher", "-o", "window.class.instance: launcher", "-e", "dwm_launcher", NULL };
-const char *spcmd4[] = {TERMINAL, "-o", "window.class.general: dashboard", "-o", "window.class.instance: dashboard", "-e", "dwm_dash", NULL };
+const char *spcmd1[] = {TERMINAL, "-o", "window.class.general='spterm'", "-o", "window.class.instance='spterm'", NULL };
+const char *spcmd2[] = {TERMINAL, "-o", "window.class.general='spcalc'", "-o", "window.class.instance='spcalc'", "-e", "bc", "-lq", NULL };
+const char *spcmd3[] = {TERMINAL, "-o", "window.class.general='launcher'", "-o", "window.class.instance='launcher'", "-e", "dwm_launcher", NULL };
+const char *spcmd4[] = {TERMINAL, "-o", "window.class.general='dashboard'", "-o", "window.class.instance='dashboard'", "-e", "dwm_dash", NULL };
 static Sp scratchpads[] = {
 	/* name          cmd  */
 	{"spterm",      spcmd1},
