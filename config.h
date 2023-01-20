@@ -60,7 +60,7 @@ static const Rule rules[] = {
 	/* class    instance      title       	 tags mask    isfloating   isterminal  noswallow  monitor */
 	{ NULL,     NULL,         "Emulator",       	   0,       1,           0,         0,        -1 },
 	{ "Mendeley Desktop",NULL,NULL,       	    1 << 3,       0,           0,         0,        1 },
-	{ "Zathura","zathura",    NULL,       	    1 << 1,       0,           0,         0,        1 },
+	// { "Zathura","zathura",    NULL,       	    1 << 1,       0,           0,         0,        1 },
 	{ "music",  "music",      NULL,       	    1 << 4,       0,           0,         0,        1 },
 	{ NULL,     NULL,         "newsboat",      	1 << 5,       0,           0,         0,        -1 },
 	{ "Brave-browser", NULL,  NULL,             1 << 6,       0,           0,         0,        1 },
