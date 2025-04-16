@@ -38,7 +38,7 @@ dist: clean
 
 install: all
 	mkdir -p ${DESTDIR}${PREFIX}/bin
-	cp -f dwm dwm-msg dwm-sysact ${DESTDIR}${PREFIX}/bin
+	cp -f dwm dwm-msg dwm-power ${DESTDIR}${PREFIX}/bin
 	chmod 755 ${DESTDIR}${PREFIX}/bin/dwm
 	chmod 755 ${DESTDIR}${PREFIX}/bin/dwm-msg
 	mkdir -p ${DESTDIR}${MANPREFIX}/man1
@@ -51,3 +51,12 @@ uninstall:
 		${DESTDIR}${MANPREFIX}/man1/dwm.1
 
 .PHONY: all options clean dist install uninstall
+
+
+# Local Variables:
+# eval: (add-hook 'after-save-hook
+#        (lambda ()
+#          (when (string= (file-name-nondirectory (buffer-file-name)) "Makefile")
+#            (async-shell-command "sudo make install")))
+#        nil t)
+# End:

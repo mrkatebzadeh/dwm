@@ -8,6 +8,6 @@ case "$selected" in
 "󰗽 Logout")     kill -TERM $(pgrep -u $USER "\bdwm$");;
 "󰑐 Renew WM")   kill -HUP $(pgrep -u $USER "\bdwm$");;
 "󰒲 Sleep")      slock ${hib:-systemctl suspend -i} ;;
-"󱄌 Reboot")     sudo -A reboot;;
-" Shutdown")	sudo -A shutdown -h now;;
+"󱄌 Reboot")     reboot;;
+" Shutdown")	shutdown -h now;;
 esac

@@ -21,12 +21,12 @@ static const int user_bh      = 9;        /* 2 is the default spacing around the
 static const int vertpad      = 5;       /* vertical padding of bar */
 static const int sidepad      = 10;       /* horizontal padding of bar */
 static char *fonts[]          = { "FiraCodeNerdFont:size=15" };
-static char normbgcolor[]           = "#222222";
+static char normbgcolor[]           = "#23282b";
 static char normbordercolor[]       = "#000000";
 static char normfgcolor[]           = "#bbbbbb";
-static char selfgcolor[]            = "#eeeeee";
-static char selbordercolor[]        = "#004466";
-static char selbgcolor[]            = "#456980";
+static char selfgcolor[]            = "#cee2cd";
+static char selbordercolor[]        = "#5c6d7a";
+static char selbgcolor[]            = "#5e8a83";
 static char *colors[][3] = {
        /*               fg           bg           border   */
        [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
@@ -192,7 +192,7 @@ static Key keys[] = {
 	{ MODKEY,			XK_h,		setmfact,	{.f = -0.05} },
 	{ MODKEY,			XK_l,		setmfact,      	{.f = +0.05} },
 	{ MODKEY,			XK_q,		killclient,      	{.f = +0.05} },
-	{ MODKEY|ShiftMask,		XK_q, spawn,    SHCMD("dwm-sysact") }, 
+	{ MODKEY|ShiftMask,		XK_q, spawn,    SHCMD("dwm-power") }, 
 	{ MODKEY,			XK_w, spawn,    SHCMD("brave")  }, 
 	{ MODKEY,			XK_semicolon,	shiftview,	{ .i = 1 } },
 	{ MODKEY|ShiftMask,		XK_semicolon,	shifttag,	{ .i = 1 } },
@@ -214,7 +214,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_Page_Up,	shifttag,	{ .i = -1 } },
 	{ MODKEY,			XK_Page_Down,	shiftview,	{ .i = +1 } },
 	{ MODKEY|ShiftMask,		XK_Page_Down,	shifttag,	{ .i = +1 } },
-	{ MODKEY,			XK_space,       spawn, SHCMD("dmenu_run -l 15")  }, 
+	{ MODKEY,			XK_space,       spawn, SHCMD("dmenu_run -l 15 -p 'Run: '")  }, 
 	{ MODKEY|ShiftMask,		XK_space,	togglefloating,	{0} },
 	{ 0, XF86XK_AudioMute,                          spawn,                  SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; kill -44 $(pidof dwmblocks)") },
 	{ 0, XF86XK_AudioRaiseVolume,                   spawn,                  SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%- && wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%+; kill -44 $(pidof dwmblocks)") },
