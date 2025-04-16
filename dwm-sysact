@@ -1,0 +1,13 @@
+#!/bin/sh
+cmds=( " Lock" "󰗽 Logout" "󰑐 Renew WM" "󰒲 Sleep" "󱄌 Reboot" " Shutdown" )
+
+selected=$(printf "%s\n" "${cmds[@]}"| dmenu -l 6 -i -p "Choose an action: ")
+
+case "$selected" in
+" Lock")       slock;;
+"󰗽 Logout")     kill -TERM $(pgrep -u $USER "\bdwm$");;
+"󰑐 Renew WM")   kill -HUP $(pgrep -u $USER "\bdwm$");;
+"󰒲 Sleep")      slock ${hib:-systemctl suspend -i} ;;
+"󱄌 Reboot")     sudo -A reboot;;
+" Shutdown")	sudo -A shutdown -h now;;
+esac
