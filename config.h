@@ -20,7 +20,9 @@ static int topbar             = 1;        /* 0 means bottom bar */
 static const int user_bh      = 9;        /* 2 is the default spacing around the bar's font */
 static const int vertpad      = 5;       /* vertical padding of bar */
 static const int sidepad      = 10;       /* horizontal padding of bar */
-static char *fonts[]          = { "FiraCodeNerdFont:size=15" };
+static char *fonts[]          = { "monospace:size=15" };
+
+
 static char normbgcolor[]           = "#23282b";
 static char normbordercolor[]       = "#000000";
 static char normfgcolor[]           = "#bbbbbb";
