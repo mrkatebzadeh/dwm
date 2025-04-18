@@ -1,10 +1,9 @@
 /* See LICENSE file for copyright and license details. */
 
 /* Constants */
-#define TERMINAL "wezterm"
-#define TERMCLASS "Wezterm"
-
-#define SESSION_FILE "/tmp/dwm-session"
+#define TERMINAL "st"
+#define TERMCLASS "St"
+#define BROWSER "brave"
 
 /* appearance */
 static unsigned int borderpx  = 2;        /* border pixel of windows */
@@ -39,16 +38,12 @@ typedef struct {
 	const char *name;
 	const void *cmd;
 } Sp;
-const char *spcmd1[] = {TERMINAL, "-o", "window.class.general='spterm'", "-o", "window.class.instance='spterm'", NULL };
-const char *spcmd2[] = {TERMINAL, "-o", "window.class.general='spcalc'", "-o", "window.class.instance='spcalc'", "-e", "bc", "-lq", NULL };
-const char *spcmd3[] = {TERMINAL, "-o", "window.class.general='launcher'", "-o", "window.class.instance='launcher'", "-e", "dwm_launcher", NULL };
-const char *spcmd4[] = {TERMINAL, "-o", "window.class.general='dashboard'", "-o", "window.class.instance='dashboard'", "-e", "dwm_dash", NULL };
+const char *spcmd1[] = {TERMINAL, "-n", "spterm", "-g", "120x34", NULL };
+const char *spcmd2[] = {TERMINAL, "-n", "spcalc", "-f", "monospace:size=16", "-g", "50x20", "-e", "bc", "-lq", NULL };
 static Sp scratchpads[] = {
 	/* name          cmd  */
 	{"spterm",      spcmd1},
 	{"spcalc",      spcmd2},
-	{"launcher",      spcmd3},
-	{"dashboard",      spcmd4}
 };
 
 /* tagging */
@@ -62,7 +57,6 @@ static const Rule rules[] = {
 	/* class    instance      title       	 tags mask    isfloating   isterminal  noswallow  monitor */
 	{ NULL,     NULL,         "Emulator",       	   0,       1,           0,         0,        -1 },
 	{ "Mendeley Desktop",NULL,NULL,       	    1 << 3,       0,           0,         0,        1 },
-	// { "Zathura","zathura",    NULL,       	    1 << 1,       0,           0,         0,        1 },
 	{ "music",  "music",      NULL,       	    1 << 4,       0,           0,         0,        1 },
 	{ NULL,     NULL,         "newsboat",      	1 << 5,       0,           0,         0,        -1 },
 	{ "Brave-browser", NULL,  NULL,             1 << 6,       0,           0,         0,        1 },
@@ -76,31 +70,36 @@ static const Rule rules[] = {
 	{ NULL,       NULL,       "Event Tester",   0,            0,           0,         1,        -1 },
 	{ NULL,      "spterm",    NULL,       	    SPTAG(0),     1,           1,         0,        -1 },
 	{ NULL,      "spcalc",    NULL,       	    SPTAG(1),     1,           1,         0,        -1 },
-	//{ NULL,      "launcher",    NULL,       	    SPTAG(2),     1,           1,         0,        -1 },
-	{ NULL,      "dashboard",    NULL,       	    SPTAG(3),     1,           1,         0,        -1 },
+	{ TERMCLASS,  NULL,       NULL,       	 0,           0,           1,          0,         -1 },
+	{ NULL,       NULL,       "Event Tester", 0,          0,           0,          1,         -1 },
+	{ TERMCLASS,  "floatterm", NULL,       	 0,           1,           1,          0,         -1 },
+	{ TERMCLASS,  "bg",        NULL,       	 1 << 7,      0,           1,          0,         -1 },
+	{ TERMCLASS,  "spterm",    NULL,       	 SPTAG(0),    1,           1,          0,         -1 },
+	{ TERMCLASS,  "spcalc",    NULL,       	 SPTAG(1),    1,           1,          0,         -1 },
 };
 
 /* layout(s) */
 static float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static int nmaster     = 1;    /* number of clients in master area */
 static int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
+static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 #define FORCE_VSPLIT 1  /* nrowgrid layout: force two clients to always split vertically */
 #include "vanitygaps.c"
 static const Layout layouts[] = {
 	/* symbol     arrange function */
- 	{ "[]=",	tile },			/* Default: Master on left, slaves on right */
-	{ "TTT",	bstack },		/* Master on top, slaves on bottom */
+	{ "[]=",	tile },	                /* Default: Master on left, slaves on right */
+	{ "TTT",	bstack },               /* Master on top, slaves on bottom */
 
-	{ "[@]",	spiral },		/* Fibonacci spiral */
-	{ "[\\]",	dwindle },		/* Decreasing in size right and leftward */
+	{ "[@]",	spiral },               /* Fibonacci spiral */
+	{ "[\\]",	dwindle },              /* Decreasing in size right and leftward */
 
-	{ "[D]",	deck },			/* Master on left, slaves in monocle-like mode on right */
- 	{ "[M]",	monocle },		/* All windows on top of eachother */
+	{ "[D]",	deck },	                /* Master on left, slaves in monocle-like mode on right */
+	{ "[M]",	monocle },              /* All windows on top of eachother */
 
-	{ "|M|",	centeredmaster },		/* Master in middle, slaves on sides */
-	{ ">M>",	centeredfloatingmaster },	/* Same but master floats */
+	{ "|M|",	centeredmaster },               /* Master in middle, slaves on sides */
+	{ ">M>",	centeredfloatingmaster },       /* Same but master floats */
 
-	{ "><>",	NULL },			/* no layout function means floating behavior */
+	{ "><>",	NULL },	                /* no layout function means floating behavior */
 	{ NULL,		NULL },
 };
 
@@ -124,7 +123,7 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-// static const char *termcmd[]  = { TERMINAL, NULL };
+static const char *termcmd[]  = { TERMINAL, NULL };
 
 /*
  * Xresources preferences to load at startup
@@ -218,11 +217,11 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_Page_Down,	shifttag,	{ .i = +1 } },
 	{ MODKEY,			XK_space,       spawn, SHCMD("dmenu_run -l 15 -p 'Run: '")  }, 
 	{ MODKEY|ShiftMask,		XK_space,	togglefloating,	{0} },
-	{ 0, XF86XK_AudioMute,                          spawn,                  SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; kill -44 $(pidof dwmblocks)") },
-	{ 0, XF86XK_AudioRaiseVolume,                   spawn,                  SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%- && wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%+; kill -44 $(pidof dwmblocks)") },
-	{ 0, XF86XK_AudioLowerVolume,                   spawn,                  SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%+ && wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%-; kill -44 $(pidof dwmblocks)") },
-	{ 0, XF86XK_MonBrightnessUp,                    spawn,                  SHCMD("brightnessctl set +10%") },
-	{ 0, XF86XK_MonBrightnessDown,                  spawn,                  SHCMD("brightnessctl set 10%-") },
+	{ 0, XF86XK_AudioMute,                          spawn,          SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; kill -44 $(pidof dwmblocks)") },
+	{ 0, XF86XK_AudioRaiseVolume,                   spawn,          SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%- && wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%+; kill -44 $(pidof dwmblocks)") },
+	{ 0, XF86XK_AudioLowerVolume,                   spawn,          SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%+ && wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%-; kill -44 $(pidof dwmblocks)") },
+	{ 0, XF86XK_MonBrightnessUp,                    spawn,          SHCMD("brightnessctl set +10%") },
+	{ 0, XF86XK_MonBrightnessDown,                  spawn,          SHCMD("brightnessctl set 10%-") },
 	
 };
 
@@ -253,26 +252,6 @@ static Button buttons[] = {
 	{ ClkTagBar,		0,		Button5,	shiftview,	{.i = 1} },
 	{ ClkRootWin,		0,		Button2,	togglebar,	{0} },
 };
-
-static const char *ipcsockpath = "/tmp/dwm.sock";
-static IPCCommand ipccommands[] = {
-  IPCCOMMAND(  view,                1,      {ARG_TYPE_UINT}   ),
-  IPCCOMMAND(  toggleview,          1,      {ARG_TYPE_UINT}   ),
-  IPCCOMMAND(  tag,                 1,      {ARG_TYPE_UINT}   ),
-  IPCCOMMAND(  toggletag,           1,      {ARG_TYPE_UINT}   ),
-  IPCCOMMAND(  tagmon,              1,      {ARG_TYPE_UINT}   ),
-  IPCCOMMAND(  focusmon,            1,      {ARG_TYPE_SINT}   ),
-  IPCCOMMAND(  focusstack,          1,      {ARG_TYPE_SINT}   ),
-  IPCCOMMAND(  zoom,                1,      {ARG_TYPE_NONE}   ),
-  IPCCOMMAND(  incnmaster,          1,      {ARG_TYPE_SINT}   ),
-  IPCCOMMAND(  killclient,          1,      {ARG_TYPE_SINT}   ),
-  IPCCOMMAND(  togglefloating,      1,      {ARG_TYPE_NONE}   ),
-  IPCCOMMAND(  setmfact,            1,      {ARG_TYPE_FLOAT}  ),
-  IPCCOMMAND(  setlayoutsafe,       1,      {ARG_TYPE_PTR}    ),
-  IPCCOMMAND(  quit,                1,      {ARG_TYPE_NONE}   )
-};
-
-
 
 // Local Variables:
 // eval: (add-hook 'after-save-hook
