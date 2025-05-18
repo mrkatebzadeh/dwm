@@ -1,8 +1,8 @@
 /* See LICENSE file for copyright and license details. */
 
 /* Constants */
-#define TERMINAL "st"
-#define TERMCLASS "St"
+#define TERMINAL "wezterm"
+#define TERMCLASS "Wezterm"
 #define BROWSER "brave"
 
 /* appearance */
@@ -38,8 +38,8 @@ typedef struct {
 	const char *name;
 	const void *cmd;
 } Sp;
-const char *spcmd1[] = {TERMINAL, "-n", "spterm", "-f", "monospace:size=14", "-g", "120x34", NULL };
-const char *spcmd2[] = {TERMINAL, "-n", "spcalc", "-f", "monospace:size=16", "-g", "50x20", "-e", "bc", "-lq", NULL };
+const char *spcmd1[] = {TERMINAL, "start", "--class", "spterm", "--position", "120,34", NULL };
+const char *spcmd2[] = {TERMINAL, "start", "--class", "spcalc", "--position", "50,20", "-e", "bc", "-lq", NULL };
 static Sp scratchpads[] = {
 	/* name          cmd  */
 	{"spterm",      spcmd1},
@@ -185,7 +185,7 @@ static Key keys[] = {
 	{ MODKEY,			XK_a,		togglegaps,	{0} },
 	{ MODKEY|ShiftMask,		XK_a,		defaultgaps,	{0} },
 	{ MODKEY,			XK_s,		togglesticky,	{0} },
-	{ MODKEY,		        XK_d, spawn,    SHCMD("dwm-displays") }, 
+	{ MODKEY,		        XK_d, spawn,    SHCMD("dwm-displays") },
 	{ MODKEY,			XK_f,		togglefullscr,	{0} },
 	{ MODKEY|ShiftMask,		XK_f,		setlayout,	{.v = &layouts[8]} },
 	{ MODKEY,			XK_g,		shiftview,	{ .i = -1 } },
@@ -193,16 +193,16 @@ static Key keys[] = {
 	{ MODKEY,			XK_h,		setmfact,	{.f = -0.05} },
 	{ MODKEY,			XK_l,		setmfact,      	{.f = +0.05} },
 	{ MODKEY,			XK_q,		killclient,      	{.f = +0.05} },
-	{ MODKEY|ShiftMask,		XK_q, spawn,    SHCMD("dwm-power") }, 
-	{ MODKEY,			XK_w, spawn,    SHCMD("brave")  }, 
+	{ MODKEY|ShiftMask,		XK_q, spawn,    SHCMD("dwm-power") },
+	{ MODKEY,			XK_w, spawn,    SHCMD("brave")  },
 	{ MODKEY,			XK_semicolon,	shiftview,	{ .i = 1 } },
 	{ MODKEY|ShiftMask,		XK_semicolon,	shifttag,	{ .i = 1 } },
 	{ MODKEY,			XK_apostrophe,	togglescratch,	{.ui = 1} },
 	{ MODKEY|ShiftMask,		XK_Return,	togglescratch,	{.ui = 0} },
-	{ MODKEY,			XK_Return,      spawn, SHCMD(TERMINAL)  }, 
+	{ MODKEY,			XK_Return,      spawn, SHCMD(TERMINAL)  },
 
 	{ MODKEY,			XK_z,		incrgaps,	{.i = +3 } },
-	{ MODKEY|ShiftMask,		XK_z,	zoom,	{0} },	
+	{ MODKEY|ShiftMask,		XK_z,	zoom,	{0} },
 	{ MODKEY,			XK_x,		incrgaps,	{.i = -3 } },
 	{ MODKEY,			XK_b,		togglebar,	{0} },
 
@@ -215,14 +215,14 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_Page_Up,	shifttag,	{ .i = -1 } },
 	{ MODKEY,			XK_Page_Down,	shiftview,	{ .i = +1 } },
 	{ MODKEY|ShiftMask,		XK_Page_Down,	shifttag,	{ .i = +1 } },
-	{ MODKEY,			XK_space,       spawn, SHCMD("dmenu_run -l 15 -p 'Run: '")  }, 
+	{ MODKEY,			XK_space,       spawn, SHCMD("dmenu_run -l 15 -p 'Run: '")  },
 	{ MODKEY|ShiftMask,		XK_space,	togglefloating,	{0} },
 	{ 0, XF86XK_AudioMute,                          spawn,          SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; kill -44 $(pidof dwmblocks)") },
 	{ 0, XF86XK_AudioRaiseVolume,                   spawn,          SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%- && wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%+; kill -44 $(pidof dwmblocks)") },
 	{ 0, XF86XK_AudioLowerVolume,                   spawn,          SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%+ && wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%-; kill -44 $(pidof dwmblocks)") },
 	{ 0, XF86XK_MonBrightnessUp,                    spawn,          SHCMD("brightnessctl set +10%") },
 	{ 0, XF86XK_MonBrightnessDown,                  spawn,          SHCMD("brightnessctl set 10%-") },
-	
+
 };
 
 /* button definitions */
