@@ -1,0 +1,24 @@
+#!/bin/sh
+
+cd $HOME/.siarch
+
+UPSTREAM=${1:-'@{u}'}
+LOCAL=$(git rev-parse @)
+REMOTE=$(git rev-parse "$UPSTREAM")
+BASE=$(git merge-base @ "$UPSTREAM")
+MODIFIED=""
+UPCHANGE=""
+if [ $LOCAL = $REMOTE ]; then
+    UPCHANGE=""
+elif [ $LOCAL = $BASE ]; then
+    UPCHANGE=""
+elif [ $REMOTE = $BASE ]; then
+    UPCHANGE=""
+else
+    UPCHANGE=""
+fi
+
+if [[ `git status --porcelain` ]]; then
+    MODIFIED=" "
+fi
+echo "$MODIFIED""$UPCHANGE"

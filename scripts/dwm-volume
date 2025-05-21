@@ -1,0 +1,25 @@
+#!/bin/sh
+
+[ $(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $3}') = "[MUTED]" ] && icon="" && echo " $icon " && exit
+
+vol="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2 * 100)}')"
+
+case 1 in
+  $((vol >= 70)) ) icon="" ;;
+  $((vol >= 30)) ) icon="" ;;
+  $((vol >= 1)) ) icon="" ;;
+  * ) icon=""; echo " $icon " && exit ;;
+esac
+   
+case $BLOCK_BUTTON in
+	3) setsid -f "$TERMINAL" -e pulsemixer ;;
+	2) pamixer -t ;;
+	4) pamixer --allow-boost -i 1 ;;
+	5) pamixer --allow-boost -d 1 ;;
+	1) 
+
+    notify-send "Volume is $vol%" ;;
+	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac
+
+echo -e " $icon "

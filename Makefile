@@ -3,21 +3,35 @@
 
 include wm/config.mk
 
-SRC = $(wildcard wm/*.c)
-OBJ = $(patsubst wm/%.c, build/%.o, $(SRC))
+WM_SRC = $(wildcard wm/*.c)
+WM_OBJ = $(patsubst wm/%.c, build/%.o, $(WM_SRC))
 
-all: bin/dwm
+all: bin/dwm bin/dwmblocks
 
 .c.o:
 	${CC} -c ${CFLAGS} $<
 
-${OBJ}: wm/config.h wm/config.mk
+${WM_OBJ}: wm/config.h wm/config.mk
 
-bin/dwm: $(OBJ) | bin
+bin/dwm: $(WM_OBJ) | bin
 	$(CC) -o $@ $^ $(LDFLAGS)
 
 build/%.o: wm/%.c | build
 	$(CC) $(CFLAGS) -c $< -o $@
+
+
+BAR_SRC = $(wildcard bar/*.c)
+BAR_OBJ = $(patsubst bar/%.c, build/%.o, $(BAR_SRC))
+
+${BAR_OBJ}: bar/config.h
+
+bin/dwmblocks: $(BAR_OBJ) | bin
+	$(CC) -o $@ $^ $(LDFLAGS)
+
+build/%.o: bar/%.c | build
+	$(CC) $(CFLAGS) -c $< -o $@
+
+
 
 clean:
 	rm -rf build bin

@@ -1,0 +1,8 @@
+#!/bin/sh
+
+case $BLOCK_BUTTON in
+	1) dwm-power;;
+	3) slock;;
+esac
+
+echo "⏻  "

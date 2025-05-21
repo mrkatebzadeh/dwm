@@ -1,0 +1,22 @@
+#!/bin/sh
+
+filter() { 
+    text=$(mpc | sed "/^volume:/d;s/\\&/&amp;/g;s/\\[paused\\].*//g;/\\[playing\\].*/d" | sed -e 's/([^()]*)//g' | paste -sd ' ' -;)
+    [ ! -z "$text" ] && echo "  🎶 "
+}
+
+pidof -x sb-mpdup >/dev/null 2>&1 || sb-mpdup >/dev/null 2>&1 &
+
+case $BLOCK_BUTTON in
+	1) mpc status | filter ; setsid -f "$TERMINAL" -e ncmpcpp ;; 
+	2) mpc toggle | filter ;;  
+	3) mpc status | filter ; notify-send "🎵 Music module" "\- Shows mpd song playing.
+-  when paused.
+- Left click opens ncmpcpp.
+- Middle click pauses.
+- Scroll changes track.";;  
+	4) mpc prev   | filter ;;  
+	5) mpc next   | filter ;;  
+	6) mpc status | filter ; "$TERMINAL" -e "$EDITOR" "$0" ;;
+	*) mpc status | filter ;;
+esac
