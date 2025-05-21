@@ -1,42 +1,43 @@
 # dwm - dynamic window manager
 # See LICENSE file for copyright and license details.
 
-include config.mk
+include wm/config.mk
 
-SRC = drw.c dwm.c util.c
-OBJ = ${SRC:.c=.o}
+SRC = $(wildcard wm/*.c)
+OBJ = $(patsubst wm/%.c, build/%.o, $(SRC))
 
-all: dwm
+all: bin/dwm
 
 .c.o:
 	${CC} -c ${CFLAGS} $<
 
-${OBJ}: config.h config.mk
+${OBJ}: wm/config.h wm/config.mk
 
-dwm: ${OBJ}
-	${CC} -o $@ ${OBJ} ${LDFLAGS}
+bin/dwm: $(OBJ) | bin
+	$(CC) -o $@ $^ $(LDFLAGS)
+
+build/%.o: wm/%.c | build
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f dwm ${OBJ} dwm-${VERSION}.tar.gz *.orig *.rej
+	rm -rf build bin
 
-dist: clean
-	mkdir -p dwm-${VERSION}
-	cp -R LICENSE Makefile README config.mk\
-		dwm.1 drw.h util.h ${SRC} transient.c dwm-${VERSION}
-	tar -cf dwm-${VERSION}.tar dwm-${VERSION}
-	gzip dwm-${VERSION}.tar
-	rm -rf dwm-${VERSION}
+build:
+	mkdir -p build
+
+bin:
+	mkdir -p bin
 
 install: all
 	mkdir -p ${DESTDIR}${PREFIX}/bin
-	install -Dm755 ./dwm ./dwm-power ./dwm-displays ${DESTDIR}${PREFIX}/bin
+	install -Dm755 bin/* scripts/* ${DESTDIR}${PREFIX}/bin
 	mkdir -p ${DESTDIR}${MANPREFIX}/man1
-	sed "s/VERSION/${VERSION}/g" < dwm.1 > ${DESTDIR}${MANPREFIX}/man1/dwm.1
+	sed "s/VERSION/${VERSION}/g" < wm/dwm.1 > ${DESTDIR}${MANPREFIX}/man1/dwm.1
 	chmod 644 ${DESTDIR}${MANPREFIX}/man1/dwm.1
 	mkdir -p ${DESTDIR}${PREFIX}/share/dwm
 
 uninstall:
-	rm -f ${DESTDIR}${PREFIX}/bin/dwm\
+	rm -f ${DESTDIR}${PREFIX}/bin/dwm*\
 		${DESTDIR}${MANPREFIX}/man1/dwm.1
 
-.PHONY: all clean dist install uninstall
+.PHONY: all clean install uninstall

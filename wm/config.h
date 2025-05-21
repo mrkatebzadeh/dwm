@@ -84,7 +84,7 @@ static int nmaster     = 1;    /* number of clients in master area */
 static int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 #define FORCE_VSPLIT 1  /* nrowgrid layout: force two clients to always split vertically */
-#include "vanitygaps.c"
+#include "vanitygaps.h"
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",	tile },	                /* Default: Master on left, slaves on right */
@@ -151,7 +151,7 @@ ResourcePref resources[] = {
 };
 
 #include <X11/XF86keysym.h>
-#include "shiftview.c"
+#include "shiftview.h"
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -252,11 +252,3 @@ static Button buttons[] = {
 	{ ClkTagBar,		0,		Button5,	shiftview,	{.i = 1} },
 	{ ClkRootWin,		0,		Button2,	togglebar,	{0} },
 };
-
-// Local Variables:
-// eval: (add-hook 'after-save-hook
-//        (lambda ()
-//          (when (string= (file-name-nondirectory (buffer-file-name)) "config.h")
-//            (async-shell-command "sudo make install")))
-//        nil t)
-// End:
