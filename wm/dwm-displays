@@ -1,6 +1,6 @@
 #!/bin/sh
 
-postrun() { 
+postrun() {
 	wallpaper
 	killall dunst >/dev/null 2>&1
 	setsid -f dunst >/dev/null 2>&1
@@ -38,6 +38,7 @@ elif [ "$chosen" = "Mirroring" ]; then
 	done
 	notify-send "󰍺 Mirroring monitors" "$primary is the primary monitor in mirroring mode."
 
+  postrun
 elif [ "$chosen" = "Multi-Monitor" ]; then
 	primary=$(echo "$monitors" | dmenu -i -l 4 -p "Select primary monitor:")
 	xrandr --output "$primary" --primary --auto
@@ -50,8 +51,7 @@ elif [ "$chosen" = "Multi-Monitor" ]; then
 	done
 	notify-send "󰍺 Multi monitors" "$primary is the primary monitor in multi-monitor mode."
 
+  postrun
 else
 	echo "Invalid option selected"
 fi
-
-postrun
