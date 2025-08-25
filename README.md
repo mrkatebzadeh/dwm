@@ -1,9 +1,9 @@
-# dwm - dynamic window manager
-dwm is an extremely fast, small, and dynamic window manager for X.
+# Raha - minimalist window manager fork of dwm, dmenu, and dwmblocks
+Raha is a fork of dwm, which is an extremely fast, small, and dynamic window manager for X.
 
 
 ## Requirements
-In order to build dwm you need the Xlib header files.
+In order to build Raha you need the Xlib header files.
 
 
 ## Installation
@@ -15,7 +15,7 @@ Afterwards enter the following command to build and install dwm (if necessary as
     make clean install
 ```
 
-## Running dwm
+## Running Raha
 -----------
 Add the following line to your .xinitrc to start dwm using startx:
 
